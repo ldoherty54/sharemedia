@@ -4,7 +4,7 @@ import { WebService } from './web.service';
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['../styles.css'],
   providers: [WebService]
 })
 export class LoginComponent {
