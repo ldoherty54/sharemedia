@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import { WebService } from './web.service';
 
 @Component({
   selector: 'app-root',
-  template: `<div>Hello {{value}}</div>`,
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  providers: [WebService],
 })
 export class AppComponent {
-  value = 'World';
+  title = 'media-share';
 }
+

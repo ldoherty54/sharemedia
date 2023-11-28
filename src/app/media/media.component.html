@@ -1,0 +1,19 @@
+<p>All Media: </p>
+
+<div class="container">
+  <button type="button" class="btn btn-success">Login</button>
+  <a routerLink="login">Log In</a>
+    <div class="row">
+        <div *ngFor="let file of webService.allMedia">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://mediashareliadoh.blob.core.windows.net{{ file.filePath }}" alt="image">
+                <div class="card-body">
+                  <h5 class="card-title">{{ file.fileName }}</h5>
+                  <p class="card-text">Posted by: {{file.userName}}</p>
+                  <a href="#" class="btn btn-secondary">Edit</a> <br>
+                  <a href="#" class="btn btn-danger"(click)="webService.deleteMedia(file.id)">Delete</a>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
