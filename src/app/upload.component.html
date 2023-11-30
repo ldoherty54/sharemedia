@@ -1,0 +1,18 @@
+<h3> Upload a new file</h3>
+<div class="container">
+<div class="upload-form">
+    <form [formGroup]="uploadData" (ngSubmit) = "uploadSubmit()">
+        <div class="form-group">
+            <label for="formTItle">Caption:</label>
+            <textarea class="form-control" id="formTItle" rows="1" placeholder="Add a Title:" formControlName="fileTitle"></textarea>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="uploadFile">Upload file:</label>
+            <input (change)="this.fileLoaded($event)" class="form-control" type="file" id="uploadFile">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</div>

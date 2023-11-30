@@ -5,7 +5,6 @@ import { WebService } from './web.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['../styles.css'],
-  providers: [WebService],
 })
 export class AppComponent {
   title = 'media-share';

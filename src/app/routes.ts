@@ -1,16 +1,26 @@
 import { Routes } from '@angular/router';
 import { MediaComponent } from './media/media.component';
 import { LoginComponent } from './login.component';
+import { UploadComponent } from './upload.component';
 
 const routeConfig: Routes = [
     {
         path: '',
-        component: MediaComponent,
+        component: LoginComponent,
     },
     {
         path: 'login',
         component: LoginComponent,
-    }
+    },
+    {
+        path: 'upload',
+        component: UploadComponent,
+    },
+    {
+        path: 'media',
+        component: MediaComponent,
+    },
+
 ];
 
 export default routeConfig;
