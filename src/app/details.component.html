@@ -1,0 +1,36 @@
+<body>
+    <h1> View & Edit the Details of this media </h1>
+
+<div class ="content">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="https://mediashareliadoh.blob.core.windows.net{{ Media.filePath }}" alt="image">
+        <div class="card-body">
+          <h5 class="card-title">{{ Media.fileName }}</h5>
+          <p class="card-text">Posted by: {{Media.userName}}</p>
+          <p class="card-text">Posted by: {{Media.filePath}}</p>
+          <p class="card-text">Posted by: {{Media.userName}}</p>
+          <button class="btn btn-danger" (click)="webService.deleteMedia(Media.id)">Delete</button>
+          <br>
+          <br>
+          <button class="btn btn-danger" (click)="translateToFrench(Media.fileName)">Translate to French</button>
+          <p class="translatedtext">Translated: {{ (translated | async)?.[0]?.translations[0].text }}</p>
+        </div>
+      </div>
+
+      <div class="upload-form">
+        <form [formGroup]="uploadData" (ngSubmit) = "editSubmit()">
+            <div class="form-group">
+                <label for="formTItle">Caption:</label>
+                <textarea class="form-control" id="formTItle" rows="1" placeholder="Add a Title:" formControlName="fileTitle"></textarea>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="uploadFile">Upload file:</label>
+                <input (change)="this.fileLoaded($event)" class="form-control" type="file" id="uploadFile">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+</body>

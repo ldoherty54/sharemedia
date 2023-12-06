@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { WebService } from '../web.service';
+import { AzureTranslateService } from '../azure-translate.service';
 
 @Component({
   selector: 'media',
@@ -8,10 +9,16 @@ import { WebService } from '../web.service';
 })
 export class MediaComponent {
     allMedia: any;
+    translated: any
 
-    constructor(public webService: WebService) {}
+    constructor(public webService: WebService, private azureTranslate: AzureTranslateService) {}
 
     ngOnInit() {
         this.webService.getMedia();
+    }
+
+    translateToFrench(text: any){
+      const language = "fr";
+      this.translated = this.azureTranslate.translateText(text, language)
     }
 }

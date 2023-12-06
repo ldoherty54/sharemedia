@@ -9,6 +9,10 @@ export class WebService {
 
     constructor(private http: HttpClient) {}
 
+
+    ///// Blob storage Logic Apps
+
+    // RAI Retrieve All Images
     getMedia(){
         return this.http.get(
             'https://prod-77.eastus.logic.azure.com/workflows/ebdcd6b2a8084b2a94bff224a576f0b7/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=x8bblkFV3XNY9mYkW2rlTVPTdRzXHMAVX-y2HARfwVs')
@@ -17,12 +21,23 @@ export class WebService {
         })
     }
 
+    // RII Retrieve Individual Image
+    getImage(id : any){
+        return this.http.get(
+        `https://prod-41.eastus.logic.azure.com/workflows/400951dbf4b840a1938c32891a7b2b6a/triggers/manual/paths/invoke/rest/v1/images/${id}?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=BsxQckR0Z5Tzd8XIM82qO4D3ayMidc8VH7XZnUBkNdQ`
+        )
+    }
+
+    // DII Delete Individual Image
     deleteMedia(id: string){
         return this.http.delete(
             `https://prod-17.eastus.logic.azure.com/workflows/a79d4671708343e384d6b35934a4c19a/triggers/manual/paths/invoke/rest/v1/assets/${id}?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=2dZhEHGCCvViEZ3e_3W_NV7drX1HP6VYLeB6IikkGaI`
         ).subscribe((response:any) => {this.getMedia();
         console.log(response)})
     }
+
+
+    ///// SQL Database Logic Apps & Functions
 
     registerUser(body: any){
         return this.http.post(
@@ -31,6 +46,7 @@ export class WebService {
         )
     }
 
+    // Azure Function that takes Username and Password as inputs and outputs the user details from the SQL Database
     getUser(UserName: string, Password: string): Observable<any>{
         console.log(`Attempting to retrieve user: ${UserName}`)
         return this.http.get(
