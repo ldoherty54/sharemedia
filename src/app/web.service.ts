@@ -21,6 +21,29 @@ export class WebService {
         })
     }
 
+
+    // Consumption logic app - Used for uploading and editing an entry in a blob
+    uploadFile(body: any){
+        console.log('Attempting Upload...')
+        return this.http.post(
+            `https://prod-10.eastus.logic.azure.com:443/workflows/70a7f16e4b3449b9b888f8cc05196842/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bZGhy6Hb4ceqah40hvAnapHSbsgMM8-LbuCjoNZdLwE`,
+            body
+        ).subscribe((response:any) => {
+            console.log(response)
+        })
+    }
+
+    // UII logic app - Used to update an entry in the blob storage
+    editFile(body: any, id: any){
+        console.log('Attempting Upload...')
+        return this.http.put(
+            `https://prod-44.eastus.logic.azure.com/workflows/a493baa95ee24339834f990b3e240e2c/triggers/manual/paths/invoke/rest/v1/images/${id}?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=mEFfqhwA670YJCwxR3AZdfKVPPWPFHnZvEoRpz_BxIk`,
+            body
+        ).subscribe((response:any) => {
+            console.log(response)
+        })
+    }
+
     // RII Retrieve Individual Image
     getImage(id : any){
         return this.http.get(
@@ -47,21 +70,12 @@ export class WebService {
     }
 
     // Azure Function that takes Username and Password as inputs and outputs the user details from the SQL Database
+    // Used to validate a login
     getUser(UserName: string, Password: string): Observable<any>{
         console.log(`Attempting to retrieve user: ${UserName}`)
         return this.http.get(
             `https://b00783009gu.azurewebsites.net/api/LoginCreds?username=${UserName}&password=${Password}`
         )
-    }
-
-    uploadFile(body: any){
-        console.log('Attempting Upload...')
-        return this.http.post(
-            `https://prod-10.eastus.logic.azure.com:443/workflows/70a7f16e4b3449b9b888f8cc05196842/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bZGhy6Hb4ceqah40hvAnapHSbsgMM8-LbuCjoNZdLwE`,
-            body
-        ).subscribe((response:any) => {
-            console.log(response)
-        })
     }
 
     setCurrentUser(user: any){

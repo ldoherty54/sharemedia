@@ -9,7 +9,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 @Component({
   selector: 'media-details',
   templateUrl: './details.component.html',
-  styleUrls: ['/details.component.css']
+  styleUrls: ['./media/media.component.css']
 })
 export class DetailsComponent {
     Media: any;
@@ -35,24 +35,19 @@ export class DetailsComponent {
     }
 
 
-    fileLoaded(event: any) {
-        console.log('Selected File:', event.target.files[0])
-        this.userFile = event.target.files[0]
-      }
-
       uploadData = this.FormBuild.group({
         fileTitle: '',
       });
 
 
-    editSubmit(){
+    editSubmit(filePath: any, fileID: any){
         const body = new FormData();
         body.append('fileName', this.uploadData.get('fileTitle').value )
         body.append('UserID', this.currentUser.UserID )
         body.append('UserName', this.currentUser.UserName )
-        body.append('File', this.userFile);
+        body.append('filePath', filePath)
         console.log('Form Data:', this.uploadData.value);
-        this.webService.uploadFile(body);
+        this.webService.editFile(body, fileID);
       }
 
 }

@@ -17,8 +17,4 @@ export class MediaComponent {
         this.webService.getMedia();
     }
 
-    translateToFrench(text: any){
-      const language = "fr";
-      this.translated = this.azureTranslate.translateText(text, language)
-    }
 }

@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
-  styleUrls: ['../styles.css'],
+  styleUrls: ['./media/media.component.css'],
 })
 export class LoginComponent {
   title = 'Login';
@@ -16,6 +16,7 @@ export class LoginComponent {
   currentUser: any;
 
 
+  // Retrieving form data from the login and registration forms
   userLogin = this.FormBuild.group({
     loginUsername: '',
     loginPassword: ''
@@ -29,6 +30,8 @@ export class LoginComponent {
   })
 
   registerSubmit(){
+
+    // Constructing JSON Object of new user
     const body = {
     'UserGroup': this.userReg.get('regUserGroup').value,
     'UserName': this.userReg.get('regUsername').value,
@@ -46,6 +49,7 @@ export class LoginComponent {
   })  
 }
 
+  // The azure function takes the login username and password as URL parameters so no need to build a body to send here
   loginSubmit(){
     const username = this.userLogin.get('loginUsername').value;
     const password = this.userLogin.get('loginPassword').value;

@@ -1,7 +1,8 @@
 <body>
     <h1> View & Edit the Details of this media </h1>
-
+    <a routerLink="/media">Home</a>
 <div class ="content">
+    <br>
     <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="https://mediashareliadoh.blob.core.windows.net{{ Media.filePath }}" alt="image">
         <div class="card-body">
@@ -18,19 +19,15 @@
       </div>
 
       <div class="upload-form">
-        <form [formGroup]="uploadData" (ngSubmit) = "editSubmit()">
+        <form [formGroup]="uploadData" (ngSubmit) = "editSubmit(Media.filePath, Media.id)">
             <div class="form-group">
-                <label for="formTItle">Caption:</label>
-                <textarea class="form-control" id="formTItle" rows="1" placeholder="Add a Title:" formControlName="fileTitle"></textarea>
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="uploadFile">Upload file:</label>
-                <input (change)="this.fileLoaded($event)" class="form-control" type="file" id="uploadFile">
+                <label for="formTItle">Edit Title:</label>
+                <textarea class="form-control" id="formTItle" rows="1" placeholder="Edit Title:" formControlName="fileTitle"></textarea>
             </div>
             <br>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <br>
     </div>
 </div>
 </body>

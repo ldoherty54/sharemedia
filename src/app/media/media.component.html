@@ -1,8 +1,10 @@
+<body>
 <h4>All Media: </h4>
 
 <div class="container">
-  <button type="button" class="btn btn-success">Login</button>
   <a routerLink="/upload">Upload</a>  
+  <p> Have a Question? Ask our Q&A Bot</p>
+  <iframe src='https://webchat.botframework.com/embed/B00783009QA-bot?s=JC251ntXHnU.eQ4NQ5dzcLyvzWsBRisD8i55a-ic6BGHSZNQgbCn0Ek'  style='min-width: 400px; width: 100%; min-height: 500px;'></iframe>
     <div class="row">
         <div *ngFor="let file of webService.allMedia">
             <div class="card" style="width: 18rem;">
@@ -17,3 +19,4 @@
         </div>
     </div>
 </div>
+</body>
