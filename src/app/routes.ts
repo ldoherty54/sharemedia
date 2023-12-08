@@ -3,6 +3,7 @@ import { MediaComponent } from './media/media.component';
 import { LoginComponent } from './login.component';
 import { UploadComponent } from './upload.component';
 import { DetailsComponent } from './details.component'
+import { UserDetailsComponent } from './userdetails.component';
 
 const routeConfig: Routes = [
     {
@@ -24,6 +25,10 @@ const routeConfig: Routes = [
     {
         path: "media/:id",
         component: DetailsComponent,
+    },
+    {
+        path: "users",
+        component: UserDetailsComponent,
     }
 
 ];

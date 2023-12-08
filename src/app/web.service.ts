@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 export class WebService {
     allMedia: any
     currentUser: any
+    allUsers: any
 
     constructor(private http: HttpClient) {}
 
@@ -59,6 +60,23 @@ export class WebService {
         console.log(response)})
     }
 
+    // DIA Delete Individual Account
+    deleteUser(id: string){
+        return this.http.delete(
+            `https://prod-58.eastus.logic.azure.com/workflows/b0de90544ac24be2ac9a062a384a3352/triggers/manual/paths/invoke/rest/v1/assets/${id}?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bckqoHXkN6556gQ4y59MYp50t2yjB-NJQhRTxVEoGAE`
+        ).subscribe((response:any) => {this.getAllUsers();
+        console.log(response)})
+    }
+
+    // UIA
+    editUser(id: string, body: any){
+        return this.http.put(
+            `https://prod-12.eastus.logic.azure.com/workflows/fc57da40eb9e4721af6c5222419a193c/triggers/manual/paths/invoke/rest/v1/assets/${id}?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=AWqpsTDTy4Y-LQNP9o09ejfyp2f3r1A4-6FFVL0e2hU`, body
+        ).subscribe((response:any) => {
+            console.log(response)
+        })
+    }
+
 
     ///// SQL Database Logic Apps & Functions
 
@@ -67,6 +85,16 @@ export class WebService {
             `https://prod-05.eastus.logic.azure.com/workflows/af651ccb5f714dd0bba75aa5f2e8d49e/triggers/manual/paths/invoke/rest/v1/assets?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=H2IS6Eee-5KQ68ouS2upm379pwrFiknNhFPuaEgp63Q`,
             body
         )
+    }
+
+    getAllUsers(){
+        return this.http.get(
+            'https://prod-06.eastus.logic.azure.com/workflows/d56ae72f71aa4ad3950b727aceb845b5/triggers/manual/paths/invoke/rest/v1/assets?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=1qmn4zfORFKyRJ2JdwkKWztn0Ze8bDZGuHTO2qVvCUw'
+        )
+        .subscribe((response: any) => {this.allUsers = response;
+            console.log(response)
+            console.log("Testing")
+        })
     }
 
     // Azure Function that takes Username and Password as inputs and outputs the user details from the SQL Database
